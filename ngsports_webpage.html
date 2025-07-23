@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NG SPORTS - Ropa Deportiva Femenina</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      margin: 0;
+      background-color: #fdfaf6;
+      color: #3f2e1d;
+    }
+    header {
+      background-color: #e9e2d0;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+    }
+    nav {
+      margin-top: 10px;
+    }
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #3f2e1d;
+      font-weight: bold;
+    }
+    .cart-icon {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+    }
+    .cart-count {
+      background: #3f2e1d;
+      color: white;
+      padding: 2px 6px;
+      border-radius: 50%;
+      font-size: 0.8rem;
+      vertical-align: super;
+    }
+    .banner {
+      background-color: #d5c9b2;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 40px;
+    }
+    .producto {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      text-align: center;
+      padding: 20px;
+    }
+    .producto img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+    .producto h3 {
+      margin: 10px 0 5px;
+    }
+    .producto button {
+      background-color: #c4b49d;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .nosotros {
+      background-color: #f3eee4;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .footer {
+      background-color: #c4b49d;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    .footer a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    #cart {
+      display: none;
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      width: 300px;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      border-radius: 10px;
+      padding: 20px;
+      z-index: 1000;
+    }
+    #cart h3 {
+      margin-top: 0;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .cart-item button {
+      background: none;
+      border: none;
+      color: red;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #checkout {
+      display: block;
+      margin-top: 15px;
+      padding: 10px;
+      width: 100%;
+      background-color: #3f2e1d;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      .productos {
+        padding: 20px;
+        grid-template-columns: 1fr;
+      }
+      header h1 {
+        font-size: 2rem;
+      }
+      .cart-icon {
+        top: 10px;
+        right: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>NG SPORTS</h1>
+    <nav>
+      <a href="#productos">Productos</a>
+      <a href="#nosotros">Nosotras</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="cart-icon" onclick="toggleCart()">
+      🛒 <span class="cart-count" id="cart-count">0</span>
+    </div>
+  </header>
+
+  <div id="cart">
+    <h3>Carrito</h3>
+    <div id="cart-items"></div>
+    <p>Total: $<span id="cart-total">0</span> MXN</p>
+    <button id="checkout">Finalizar compra</button>
+  </div>
+
+  <section class="banner">
+    <h2>Ropa deportiva femenina con estilo</h2>
+    <p>Conjuntos, leggins, tops y más para moverte con libertad y elegancia</p>
+  </section>
+
+  <section class="productos" id="productos">
+    <div class="producto">
+      <img src="https://img.ltwebstatic.com/v4/j/spmp/2025/05/21/3d/1747822269c4b25edbea2826b754162b3325324c47.webp" alt="Conjunto Beige">
+      <h3>Short Corto Rosa</h3>
+      <p>$380 MXN</p>
+      <button onclick="addToCart('Short Corto Rosa', 380)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="https://img.ltwebstatic.com/v4/j/spmp/2025/05/21/6d/174782227106be35070347a0b87bee3327e4c5de1c.webp" alt="Leggins Crema">
+      <h3>Short Corto Burdeos</h3>
+      <p>$380 MXN</p>
+      <button onclick="addToCart('Short Corto Burdeos', 380)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="https://img.ltwebstatic.com/v4/j/pi/2025/04/16/d7/17447874541364597cffe701f27b18737e85e05ddc.webp" alt="Top Verde">
+      <h3>Top Verde</h3>
+      <p>$260 MXN</p>
+      <button onclick="addToCart('Top Verde', 260)">Agregar al carrito</button>
+    </div>
+  </section>
+
+  <section class="nosotros" id="nosotros">
+    <h2>Sobre Nosotras</h2>
+    <p>NG SPORTS nace para empoderar a las mujeres activas. Diseñamos ropa deportiva que combina confort, estilo y libertad de movimiento, para que te sientas fuerte y segura cada día.</p>
+  </section>
+
+  <footer class="footer" id="contacto">
+    <p>&copy; 2025 NG SPORTS - Todos los derechos reservados</p>
+    <p>Síguenos: 
+      <a href="#">Instagram</a> | 
+      <a href="#">Facebook</a> | 
+      <a href="#">WhatsApp</a>
+    </p>
+  </footer>
+
+  <script>
+    let cart = [];
+
+    function addToCart(name, price) {
+      const item = cart.find(p => p.name === name);
+      if (item) {
+        item.qty++;
+      } else {
+        cart.push({ name, price, qty: 1 });
+      }
+      updateCart();
+    }
+
+    function updateCart() {
+      const cartItems = document.getElementById('cart-items');
+      const cartCount = document.getElementById('cart-count');
+      const cartTotal = document.getElementById('cart-total');
+
+      cartItems.innerHTML = '';
+      let total = 0;
+      let count = 0;
+
+      cart.forEach(item => {
+        total += item.price * item.qty;
+        count += item.qty;
+        cartItems.innerHTML += `<div class='cart-item'>
+          ${item.name} x${item.qty} - $${item.price * item.qty}
+          <button onclick="removeItem('${item.name}')">X</button>
+        </div>`;
+      });
+
+      cartCount.textContent = count;
+      cartTotal.textContent = total;
+    }
+
+    function removeItem(name) {
+      cart = cart.filter(item => item.name !== name);
+      updateCart();
+    }
+
+    function toggleCart() {
+      const cartBox = document.getElementById('cart');
+      cartBox.style.display = cartBox.style.display === 'block' ? 'none' : 'block';
+    }
+
+    document.getElementById('checkout').addEventListener('click', () => {
+      alert('Gracias por tu compra. Esta es una demo sin pagos en línea.');
+    });
+  </script>
+</body>
+</html>
