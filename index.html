@@ -118,10 +118,15 @@
       align-items: center;
       margin-bottom: 10px;
     }
+    .cart-item span {
+      display: inline-block;
+      margin: 0 5px;
+    }
     .cart-item button {
       background: none;
       border: none;
-      color: red;
+      color: #3f2e1d;
+      font-size: 1rem;
       font-weight: bold;
       cursor: pointer;
     }
@@ -239,13 +244,34 @@
         total += item.price * item.qty;
         count += item.qty;
         cartItems.innerHTML += `<div class='cart-item'>
-          ${item.name} x${item.qty} - $${item.price * item.qty}
-          <button onclick="removeItem('${item.name}')">X</button>
+          <span>${item.name}</span>
+          <div>
+            <button onclick="decreaseQty('${item.name}')">−</button>
+            <span>${item.qty}</span>
+            <button onclick="increaseQty('${item.name}')">+</button>
+          </div>
+          <button onclick="removeItem('${item.name}')">🗑️</button>
         </div>`;
       });
 
       cartCount.textContent = count;
       cartTotal.textContent = total;
+    }
+
+    function increaseQty(name) {
+      const item = cart.find(p => p.name === name);
+      if (item) item.qty++;
+      updateCart();
+    }
+
+    function decreaseQty(name) {
+      const item = cart.find(p => p.name === name);
+      if (item && item.qty > 1) {
+        item.qty--;
+      } else {
+        cart = cart.filter(p => p.name !== name);
+      }
+      updateCart();
     }
 
     function removeItem(name) {
